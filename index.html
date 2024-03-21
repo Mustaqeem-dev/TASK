@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Droppex Cloud Storage</title>
+    <style>
+      /* Reset default margin and padding */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial, sans-serif;
+      }
+      .container {
+        display: flex;
+        justify-content: center;
+        flex-grow: 1;
+      }
+      .sidebar {
+        width: 20%;
+        background-color: #121212;
+        padding: 20px;
+      }
+      .main-content {
+        width: 80%;
+        background-color: #1e1e1e;
+        color: white;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+        border: none;
+      }
+
+      th {
+        color: #fafafab2;
+        background-color: #171717;
+      }
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      h2 {
+        color: #57acdc;
+      }
+      li > p {
+        color: #57acdc;
+      }
+      li {
+        margin-right: 10px;
+      }
+      .home {
+        color: #57acdc;
+      }
+      .droppex {
+        color: #57acdc;
+        display: flex;
+        flex-wrap: nowrap;
+      }
+
+      .home {
+        display: flex;
+        flex-wrap: nowrap;
+      }
+      .Folder {
+        background-color: #57acdc;
+        border-radius: 20px; /* Adjust the border-radius to your preference */
+        border: 1px solid blue; /* Added border style */
+        /* Added to make border-radius work */
+        padding: 5px;
+        color: white;
+        display: flex;
+        flex-wrap: nowrap;
+      }
+      .trash {
+        display: flex;
+        flex-wrap: nowrap;
+        color: #939393;
+        padding-top: "30px";
+      }
+      .progress {
+        color: #939393;
+        display: flex;
+        flex-wrap: nowrap;
+      }
+
+      input {
+        background-color: #171717;
+      }
+
+      .inputsearch form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+      .filesdrop {
+        display: flex;
+        flex-wrap: nowrap;
+      }
+      .header {
+        display: flex;
+        flex-wrap: nowrap;
+        padding: 30px;
+      }
+      .header {
+        display: flex;
+        align-items: center;
+      }
+
+      .inputsearch {
+        display: flex;
+        align-items: center;
+
+        background-color: #171717;
+        border-radius: 5px;
+        padding: 5px;
+        border: 1px solid #ccc;
+      }
+
+      .inputsearch img:first-child {
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+      }
+
+      .inputsearch input {
+        border: none;
+        outline: none;
+        padding: 5px;
+        font-size: 16px;
+      }
+
+      .filesdrop {
+        display: flex;
+        align-items: center;
+        margin-left: 30px;
+        border: 1px dashed #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        cursor: pointer;
+      }
+
+      .filesdrop p {
+        margin: 0;
+        font-size: 14px;
+      }
+
+      .filesdrop span {
+        font-weight: bold;
+      }
+      .rawa {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #888;
+        margin-bottom: 5px;
+      }
+      .ICONS {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+      }
+      .pdiv {
+        display: flex;
+      }
+      .pdiv > p {
+        margin-left: 400px; /* Add margin to create space between the paragraphs */
+      }
+      .iconsdiv {
+        margin-left: 50px;
+      }
+      .file-icon {
+        padding: 3px;
+      }
+      .difficons {
+        padding: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <!-- Sidebar content -->
+        <div class="droppex">
+          <img src="./assets/box.png" class="box" />
+          <p class="boxp">Droppex</p>
+        </div>
+        <div class="Folder" style="margin-top: 30px">
+          <img src="./assets/folder-add.png" alt="Icon Description" />
+          <p>New Folder</p>
+        </div>
+        <div class="home" style="margin-top: 30px">
+          <img src="./assets/category.png" alt="Icon Description" />
+          <p>Home</p>
+        </div>
+        <div class="trash" style="margin-top: 30px">
+          <img src="./assets/trash.png" />
+          <p>Trash</p>
+        </div>
+        <div class="sidebar2" style="margin-top: 80px">
+          <div class="progress">
+            <img src="./assets/cloud.png" />
+            <p>Storage</p>
+          </div>
+          <div style="margin-top: 30px">
+            <img src="./assets/Group 1000003763.png" />
+          </div>
+        </div>
+      </div>
+      <div class="main-content">
+        <!-- Main content area -->
+        <div class="header">
+          <div class="inputsearch" style="width: 600px">
+            <form action="action">
+              <img src="./assets/search-normal.png" />
+              <input
+                type="search"
+                id="gsearch"
+                name="gsearch"
+                placeholder="Search for file, folder, shared storehouse"
+              />
+              <img src="./assets//Group 1000003849.png" />
+            </form>
+          </div>
+          <div class="filesdrop">
+            <img src="./assets/Group 1000003773.png" />
+            <p>
+              Drag and drop
+              <span style="color: #57acdc">
+                files , folders
+                <span style="color: white">or </span> links</span
+              >
+            </p>
+          </div>
+          <img style="margin-left: 10px" src="./assets/Frame 3.png" />
+          <img style="margin-left: 10px" src="./assets//Group 1000003956.png" />
+        </div>
+        <div class="rawa">
+          <p style="margin-left: 30px">Rawa Main Drive</p>
+          <img src="./assets/Group 1000003971.png" />
+        </div>
+        <div class="ICONS">
+          <div class="pdiv">
+            <p style="margin-left: 30px">
+              Select folder or file to see options
+            </p>
+            <p>No item selected</p>
+          </div>
+          <div class="iconsdiv">
+            <img src="./assets/Component 5.png" />
+            <img src="./assets/Component 6.png" />
+            <img src="./assets/ShowHide.png" />
+            <img src="./assets/Options.png" />
+            <img src="./assets/Component 2.png" />
+            <img src="./assets/Options (1).png" />
+          </div>
+        </div>
+        <table>
+          <thead class="thead">
+            <tr>
+              <th>Name</th>
+              <th>Uploaded</th>
+              <th>Size</th>
+              <th>View No.</th>
+              <th>Last Modified</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <img
+                  class="file-icon"
+                  src="./assets/Checkbox.png"
+                  alt="File icon"
+                />
+                <img src="./assets/Ellipse 99.png" />
+                <img class="difficons" src="./assets/folder.png" />
+                Report.docx
+              </td>
+              <td>2.5 MB</td>
+              <td>2024-03-18 09:30 AM</td>
+              <td>O times</td>
+              <td>Dec 10, 2022 2:00PM</td>
+            </tr>
+
+            <tr>
+              <td>
+                <img
+                  class="file-icon"
+                  src="./assets/Checkbox.png"
+                  alt="File icon"
+                />
+
+                <img class="difficons" src="./assets/Rectangle 6185 (1).png" />
+                Report.docx
+              </td>
+              <td>2.5 MB</td>
+              <td>2024-03-18 09:30 AM</td>
+              <td>O times</td>
+              <td>Dec 10, 2022 2:00PM</td>
+            </tr>
+
+            <tr>
+              <td>
+                <img
+                  class="file-icon"
+                  src="./assets/Checkbox.png"
+                  alt="File icon"
+                />
+
+                <img class="difficons" src="./assets/Rectangle 6185 (2).png" />
+                Report.docx
+              </td>
+              <td>2.5 MB</td>
+              <td>2024-03-18 09:30 AM</td>
+              <td>O times</td>
+              <td>Dec 10, 2022 2:00PM</td>
+            </tr>
+            <tr>
+              <td>
+                <img
+                  class="file-icon"
+                  src="./assets/Checkbox.png"
+                  alt="File icon"
+                />
+
+                <img class="difficons" src="./assets/music 1.png" />
+                Report.docx
+              </td>
+              <td>2.5 MB</td>
+              <td>2024-03-18 09:30 AM</td>
+              <td>O times</td>
+              <td>Dec 10, 2022 2:00PM</td>
+            </tr>
+            <tr>
+              <td>
+                <img
+                  class="file-icon"
+                  src="./assets/Checkbox.png"
+                  alt="File icon"
+                />
+
+                <img class="difficons" src="./assets/music 1.png" />
+                Report.docx
+              </td>
+              <td>2.5 MB</td>
+              <td>2024-03-18 09:30 AM</td>
+              <td>O times</td>
+              <td>Dec 10, 2022 2:00PM</td>
+            </tr>
+            <tr>
+              <td>
+                <img
+                  class="file-icon"
+                  src="./assets/Checkbox.png"
+                  alt="File icon"
+                />
+                <img src="./assets/Ellipse 99.png" />
+                <img class="difficons" src="./assets/doc 2.png" />
+                Report.docx
+              </td>
+              <td>2.5 MB</td>
+              <td>2024-03-18 09:30 AM</td>
+              <td>O times</td>
+              <td>Dec 10, 2022 2:00PM</td>
+            </tr>
+            <tr>
+              <td>
+                <img
+                  class="file-icon"
+                  src="./assets/Checkbox.png"
+                  alt="File icon"
+                />
+
+                <img class="difficons" src="./assets/pdf (1) 1.png" />
+                Report.docx
+              </td>
+              <td>2.5 MB</td>
+              <td>2024-03-18 09:30 AM</td>
+              <td>O times</td>
+              <td>Dec 10, 2022 2:00PM</td>
+            </tr>
+            <tr>
+              <td>
+                <img
+                  class="file-icon"
+                  src="./assets/Checkbox.png"
+                  alt="File icon"
+                />
+
+                <img class="difficons" src="./assets/pdf (1) 1.png" />
+                Report.docx
+              </td>
+              <td>2.5 MB</td>
+              <td>2024-03-18 09:30 AM</td>
+              <td>O times</td>
+              <td>Dec 10, 2022 2:00PM</td>
+            </tr>
+            <tr>
+              <td>
+                <img
+                  class="file-icon"
+                  src="./assets/Checkbox.png"
+                  alt="File icon"
+                />
+                <img src="./assets/Ellipse 99.png" />
+                <img class="difficons" src="./assets/doc 2.png" />
+                Report.docx
+              </td>
+              <td>2.5 MB</td>
+              <td>2024-03-18 09:30 AM</td>
+              <td>O times</td>
+              <td>Dec 10, 2022 2:00PM</td>
+            </tr>
+            <tr>
+              <td>
+                <img
+                  class="file-icon"
+                  src="./assets/Checkbox.png"
+                  alt="File icon"
+                />
+
+                <img class="difficons" src="./assets/doc 2.png" />
+                Report.docx
+              </td>
+              <td>2.5 MB</td>
+              <td>2024-03-18 09:30 AM</td>
+              <td>O times</td>
+              <td>Dec 10, 2022 2:00PM</td>
+            </tr>
+            <tr>
+              <td>
+                <img
+                  class="file-icon"
+                  src="./assets/Checkbox.png"
+                  alt="File icon"
+                />
+                <img src="./assets/Ellipse 99.png" />
+                <img class="difficons" src="./assets/doc 2.png" />
+                Report.docx
+              </td>
+              <td>2.5 MB</td>
+              <td>2024-03-18 09:30 AM</td>
+              <td>O times</td>
+              <td>Dec 10, 2022 2:00PM</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
